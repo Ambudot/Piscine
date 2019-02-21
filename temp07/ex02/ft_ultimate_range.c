@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_range.c                                         :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopaning <jopaning@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 10:06:35 by jopaning          #+#    #+#             */
-/*   Updated: 2019/02/21 17:13:04 by jopaning         ###   ########.fr       */
+/*   Created: 2019/02/21 15:16:17 by jopaning          #+#    #+#             */
+/*   Updated: 2019/02/21 17:25:12 by jopaning         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	*ft_range(int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
 	int i;
 	int j;
-	int *mashalla;
+	int *temp;
+	int x;
 
 	i = min;
-	j = 0;
+	x = min;
+	if (min > max)
+	{
+		*range = NULL;
+		return (0);
+	}
 	while (i < max)
 		i++;
-	if (min > max)
-		return (NULL);
-	else if ((mashalla = malloc(sizeof(*mashalla) * (i))) == NULL)
-		return (NULL);
+	if ((temp = malloc(sizeof(*temp) * (i))) == NULL)
+		return (0);
+	j = 0;
 	while (j < i)
 	{
-		mashalla[j] = min;
+		temp[j] = min;
 		min++;
 		j++;
 	}
-	return (mashalla);
+	*range = temp;
+	return (j - x);
 }
